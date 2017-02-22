@@ -1,4 +1,4 @@
-package hogrebetyg;
+package alda.graph;
 
 import java.io.*;
 
@@ -116,7 +116,7 @@ public class BaconReader {
 
 	private void skipToBeginningOfData() throws IOException {
 		String line = reader.readLine();
-		while (!line.startsWith("----			------")) {
+		while (!line.startsWith("----\t\t\t------") ) {
 			line = reader.readLine();
 		}
 		read();
