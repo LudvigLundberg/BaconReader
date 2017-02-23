@@ -26,8 +26,10 @@ public class Main {
             System.out.println("Write the Name of the actor you want to find: ");
             String input = getInput();
             if(input != null && !input.isEmpty()){
+                long time = System.currentTimeMillis();
                 int number = graph.getDegreeOfSeparation(input);
                 System.out.println("Bacon number of " + input + " = " + number);
+                System.out.println("Search took: " + (System.currentTimeMillis() - time ) + " ms");
             }
 
 

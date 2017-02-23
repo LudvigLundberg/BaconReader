@@ -26,6 +26,7 @@ public class BreadthFirstSearch{
         marked.add(start);
         queue.add(start);
 
+        long numberofedgesSearched = 0;
         while(!queue.isEmpty()){
             int current = queue.poll();
 
@@ -35,6 +36,7 @@ public class BreadthFirstSearch{
                 }
                 pathTo.add(graph.getNodeByIndex(start));
                 System.out.println(pathTo.toString());
+                System.out.println("Number of nodes searched: " + numberofedgesSearched++);
                 return (pathTo.size()/2);
             }
 
@@ -47,6 +49,7 @@ public class BreadthFirstSearch{
                     queue.add(index);
                 }
             }
+            numberofedgesSearched++;
         }
         return -1;
     }
