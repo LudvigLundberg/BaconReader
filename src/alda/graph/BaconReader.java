@@ -116,7 +116,7 @@ public class BaconReader {
 
 	private void skipToBeginningOfData() throws IOException {
 		String line = reader.readLine();
-		while (!line.startsWith("----\t\t\t------") ) {
+			while (!line.startsWith("----\t\t\t------") ) {
 			line = reader.readLine();
 		}
 		read();

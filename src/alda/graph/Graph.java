@@ -52,10 +52,13 @@ public class Graph {
         return indexAndNode.get(index);
     }
 
-    private void addTitle(String title, String currentActor, IntArrayList currentActorList){
+    private void addNode(){
+
+    }
+
+    private void addTitle(String title, IntArrayList currentActorList, int actorIndex){
         if(nodeAndIndex.containsKey(title)){
             int titleIndex = nodeAndIndex.get(title);
-            int actorIndex = nodeAndIndex.get(currentActor);
             IntArrayList titleList = edgesByIndex.get(titleIndex);
             currentActorList.add(titleIndex);
             titleList.add(actorIndex);
@@ -64,7 +67,6 @@ public class Graph {
         else{
             IntArrayList titleList = new IntArrayList();
             int titleIndex = actorCount + titleCount++;
-            int actorIndex = nodeAndIndex.get(currentActor);
             edgesByIndex.add(titleIndex, titleList);
             nodeAndIndex.put(title, titleIndex);
             indexAndNode.put(titleIndex, title);
@@ -84,43 +86,48 @@ public class Graph {
             BaconReader.Part part;
             StringBuilder builder = new StringBuilder();
 
-            String currentActor = null;
+            //String currentActor = null;
+            int currentActorIndex = -1;
             IntArrayList currentActorList = null;
 
             while ((part = reader.getNextPart()) != null){
 
                 switch (part.type){
                     case NAME: {
-                        if(currentActor != null && !builder.toString().isEmpty()){
+                        if(currentActorIndex != -1 && !builder.toString().isEmpty()){
                             String title = builder.toString();
-                            addTitle(title, currentActor, currentActorList);
+                            addTitle(title, currentActorList,currentActorIndex);
                             builder = new StringBuilder();
                         }
 
-                        currentActor = part.text;
-                        int actorIndex = (actorCount++) + titleCount;
+                        String currentActor = part.text;
+                        currentActorIndex = (actorCount++) + titleCount;
                         currentActorList = new IntArrayList();
-                        edgesByIndex.add(actorIndex, currentActorList);
-                        nodeAndIndex.put(currentActor, actorIndex);
-                        indexAndNode.put(actorIndex, currentActor);
+                        edgesByIndex.add(currentActorIndex, currentActorList);
+                        nodeAndIndex.put(currentActor, currentActorIndex);
+                        indexAndNode.put(currentActorIndex, currentActor);
                         break;
                     }
                     case TITLE:{
                         if(!builder.toString().isEmpty()){
                             String title = builder.toString();
-                            addTitle(title, currentActor, currentActorList);
-                            builder = new StringBuilder();
+                            addTitle(title, currentActorList,currentActorIndex);
+                            builder = new StringBuilder(part.text);
+                        }
+                        else{
+                            builder.append(part.text);
                         }
 
-                        builder.append(part.text);
                         break;
                     }
                     case YEAR:{
-                        builder.append(" " + part.text);
+                        builder.append(" ");
+                        builder.append(part.text);
                         break;
                     }
                     case ID:{
-                        builder.append(" " + part.text);
+                        builder.append(" ");
+                        builder.append(part.text);
                         break;
                     }
 

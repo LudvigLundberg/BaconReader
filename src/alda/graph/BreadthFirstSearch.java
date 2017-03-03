@@ -18,7 +18,6 @@ public class BreadthFirstSearch{
         marked = new IntHashSet();
         edgeTo = new IntIntHashMap();
         pathTo = new ArrayList<>();
-
         queue = new LinkedList<>();
     }
 
