@@ -1,5 +1,9 @@
 package alda.graph;
 
+/**
+ * Collections from Eclipse, to avoid unnecessary space usage from Integer and a leaner version of a HashMap.
+ */
+
 import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 
@@ -22,8 +26,6 @@ public class Graph {
         edgesByIndex = new ArrayList<>();
         nodeAndIndex = new UnifiedMap<>();
         indexAndNode = new UnifiedMap<>();
-
-
 
         for (String filename: inputFiles) {
             loadGraph(filename);
@@ -50,10 +52,6 @@ public class Graph {
     }
     protected String getNodeByIndex(int index){
         return indexAndNode.get(index);
-    }
-
-    private void addNode(){
-
     }
 
     private void addTitle(String title, IntArrayList currentActorList, int actorIndex){

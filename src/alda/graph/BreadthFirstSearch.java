@@ -1,5 +1,9 @@
 package alda.graph;
 
+/**
+ * Collections from Eclipse, to avoid unnecessary space usage from Integer
+ */
+
 import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
 import org.eclipse.collections.impl.map.mutable.primitive.IntIntHashMap;
 import org.eclipse.collections.impl.set.mutable.primitive.IntHashSet;
@@ -35,7 +39,7 @@ public class BreadthFirstSearch{
                 }
                 pathTo.add(graph.getNodeByIndex(start));
                 System.out.println(pathTo.toString());
-                System.out.println("Number of nodes searched: " + numberofedgesSearched++);
+                System.out.println("Number of nodes searched: " + numberofedgesSearched);
                 return (pathTo.size()/2);
             }
 
