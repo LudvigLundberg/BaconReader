@@ -84,7 +84,6 @@ public class Graph {
             BaconReader.Part part;
             StringBuilder builder = new StringBuilder();
 
-            //String currentActor = null;
             int currentActorIndex = -1;
             IntArrayList currentActorList = null;
 
